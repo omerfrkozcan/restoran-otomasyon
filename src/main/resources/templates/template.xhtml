@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui"
+>
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><ui:insert name="title">Restoran Otomasyon</ui:insert></title>
+
+    <h:outputStylesheet name="bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css"/>
+    <h:outputStylesheet library="css" name="screen.css"/>
+
+    <ui:insert name="extraScript"/>
+</h:head>
+
+<h:body>
+
+    <div class="container">
+        <div class="row h-100" style="min-height: 555px">
+
+            <ui:fragment id="header" rendered="#{const.loggedIn}">
+                <div class="row" style="margin: 25px 0;">
+                    <div class="col-3">
+                        <a href="/admin" style="color: #204f79;text-decoration: none;">
+                            <p:graphicImage library="img" name="logo.png" height="56" style="margin-left: 16px;"/>
+                        </a>
+                    </div>
+
+                    <div class="col-9">
+                        <p:menubar autoDisplay="false">
+                            <p:menuitem value="Ürünler" outcome="urun.xhtml" icon="ui-icon-star"/>
+
+                            <f:facet name="options">
+                                <div style="margin-top: 9px; padding-right: 33px; position: relative; display: inline-flex;">
+                                    <i class="pi pi-fw pi-user-plus"/>
+                                    <p:outputLabel value="#{const.user.username}" style="margin-left: 5px; font-size: 16px !important;"/>
+                                </div>
+                                <p:commandButton action="#{loginBean.logout()}" value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
+                            </f:facet>
+
+                        </p:menubar>
+                    </div>
+
+                </div>
+            </ui:fragment>
+
+            <ui:insert name="content"/>
+
+        </div>
+    </div>
+
+    <footer class="container p-4 rounded">
+        <div class="d-lg-flex justify-content-center">
+            <div class="copyright">
+                <p>
+                    <a href="/admin" style="font-size: 17px; color: #204f79;text-decoration: none;">Restoran Otomasyon&copy; 2023</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <h:outputScript name="bootstrap-5.3.0-alpha3-dist/js/bootstrap.min.js"/>
+    <h:outputScript library="js" name="prime.js"/>
+
+</h:body>
+</html>

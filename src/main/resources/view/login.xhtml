@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:f="jakarta.faces.core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml"
+>
+
+    <ui:define name="content">
+
+        <div class="row" style="height: 555px">
+            <div class="col-sm-12 my-auto login-form d-flex justify-content-center">
+                <h:form>
+                    <p:growl id="messages" showDetail="true" skipDetailIfEqualsSummary="true"/>
+
+                    <p:panel header="Login" style="width: 380px; margin-top: 33px;">
+
+                        <p:panelGrid id="grid" columns="2" cellpadding="5" style="width: 100%; border-style: hidden;">
+                            <h:outputText value="User"/>
+                            <p:inputText value="#{loginBean.username}" required="true" requiredMessage="Username is required"/>
+                            <h:outputText value="Pass"/>
+                            <p:password value="#{loginBean.password}" required="true" requiredMessage="Password is required"/>
+                        </p:panelGrid>
+
+                        <f:facet name="footer">
+                            <p:commandButton value="Login" action="#{loginBean.login}" update="messages"/>
+                        </f:facet>
+
+                    </p:panel>
+                </h:form>
+            </div>
+        </div>
+
+    </ui:define>
+
+</ui:composition>
