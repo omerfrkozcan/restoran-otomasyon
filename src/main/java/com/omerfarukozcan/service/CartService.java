@@ -38,7 +38,7 @@ public class CartService {
 
         final String sessionId = requestUtil.getSessionId();
         CartModel oldCart = repository.getFirstByUrunIdAndSessionId(request.getUrunId(), request.getSessionId());
-        if (izNotNull(oldCart.getOrderId())) oldCart = null;
+        if (izNotNull(oldCart) && izNotNull(oldCart.getOrderId())) oldCart = null;
 
         final CartModel cart = izNotNull(oldCart) ? oldCart : new CartModel();
 
