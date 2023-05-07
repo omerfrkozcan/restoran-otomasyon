@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html th:lang="${lang}" th:with="lang=${#locale.language}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"></title>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/assets/img/favicon.ico}" type="image/x-icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" th:href="@{/assets/lib/animate/animate.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/lib/owlcarousel/assets/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css}">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+
+    <!-- Template Stylesheet -->
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+</head>
+
+<body>
+<div class="container-xxl bg-white p-0">
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Yükleniyor...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar & Hero Start -->
+    <div class="container-xxl position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+
+            <a href="/" class="navbar-brand p-0">
+                <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Restoran</h1>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0 pe-4">
+                    <a href="/cart" class="nav-item nav-link">
+                        <div class="cart">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span class="cart-basket d-flex align-items-center justify-content-center" th:text="${cartsSize}"></span>
+                        </div>
+                    </a>
+                </div>
+                <a href="/orders" class="btn btn-primary py-2 px-4">Siparişlerim</a>
+            </div>
+        </nav>
+
+        <div class="container-xxl py-5 bg-dark hero-header mb-5">
+
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Menu Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class=" bg-gray-300">
+                <div class="">
+
+
+                    <div class="bg-gray-100" style="background-color: white">
+                        <div class="md:flex ">
+                            <div class="w-full p-4 px-5 py-5">
+
+                                <div class="md:grid md:grid-cols-3 gap-2 ">
+
+                                    <div class="col-span-2 p-5">
+
+                                        <h1 class="text-xl font-medium ">Sepet</h1>
+
+                                        <div class="flex justify-between items-center mt-6 pt-6 border-t" th:each="cart : ${carts}">
+                                            <div class="flex  items-center">
+                                                <img src="https://i.imgur.com/xbTAITF.jpg" width="60" class="rounded-full ">
+
+                                                <div class="flex flex-col ml-3 ">
+                                                    <span class="text-md font-medium" th:text="${cart.urunName}"></span>
+                                                    <span class="text-xs font-light text-gray-400" th:text="${cart.urunDescription}"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex justify-center items-center">
+
+                                                <div class="pr-8 flex">
+                                                    <span class="font-semibold">-</span>
+                                                    <input type="text" class="focus:outline-none bg-gray-100 border h-6 w-8 rounded text-sm px-2 mx-2"
+                                                           th:value="${cart.count}">
+                                                    <span class="font-semibold">+</span>
+                                                </div>
+
+                                                <div class="pr-8">
+                                                    <span class="text-xs font-medium" th:text="${cart.totalPrice}"></span> ₺
+                                                </div>
+                                                <div>
+                                                    <i class="fa fa-close text-xs font-medium"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex justify-between items-center mt-6 pt-6 border-t">
+                                            <div class="flex items-center">
+                                                <i class="fa fa-arrow-left text-sm pr-2"></i>
+                                                <span class="text-md  font-medium text-blue-500">Menü</span>
+                                            </div>
+
+                                            <div class="flex justify-center items-end">
+                                                <span class="text-sm font-medium text-gray-400 mr-1">Dip Toplam:</span>
+                                                <span class="text-lg font-bold text-gray-800 " th:text="${cartsTotalPrice}"></span> ₺
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class=" p-5 bg-gray-800 rounded overflow-visible">
+                                        <span class="text-xl font-medium text-gray-100 block pb-3">Sipariş Detayları</span>
+
+                                        <div class="flex justify-center flex-col pt-3">
+                                            <label class="text-xs text-gray-400 ">Ad Soyad</label>
+                                            <input type="text" id="name"
+                                                   class="focus:outline-none w-full h-6 bg-gray-800 text-white placeholder-gray-300 text-sm border-b border-gray-600 py-4">
+                                        </div>
+                                        <div class="flex justify-center flex-col pt-3">
+                                            <label class="text-xs text-gray-400 ">E-mail</label>
+                                            <input type="text" id="email"
+                                                   class="focus:outline-none w-full h-6 bg-gray-800 text-white placeholder-gray-300 text-sm border-b border-gray-600 py-4">
+                                        </div>
+                                        <div class="flex justify-center flex-col pt-3">
+                                            <label class="text-xs text-gray-400 ">Sipariş Notu</label>
+                                            <input type="text" id="note"
+                                                   class="focus:outline-none w-full h-6 bg-gray-800 text-white placeholder-gray-300 text-sm border-b border-gray-600 py-4">
+                                        </div>
+
+                                        <button class="h-12 w-full bg-blue-500 rounded focus:outline-none text-white hover:bg-blue-600 checkout-ok-button"
+                                                style="margin-top: 27px;">
+                                            Tamamla
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Menu End -->
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Restoran Otomasyonu</h4>
+                    <a class="btn btn-link" href="/cart">Sepete Git</a>
+                    <a class="btn btn-link" href="/orders">Siparişlerim</a>
+                    <a class="btn btn-link" href="/">Gizlilik Politikası</a>
+                    <a class="btn btn-link" href="/">Kullanım Koşulları</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">İletişim</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Samsa Çavuç Caddesi Derince, Türkiye</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+090 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>omerfrkozcan@gmail.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href="/"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="/"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="/"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="/"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Çalışma Saatleri</h4>
+                    <h5 class="text-light fw-normal">Pazartesi - Cuma</h5>
+                    <p>09.00 - 21.00</p>
+                    <h5 class="text-light fw-normal">Saturday</h5>
+                    <p>11.00 - 19.00</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col text-center mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="https://restoran-otomasyon.com">restoran-otomasyon.com</a>, Tüm hakları saklıdır.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/lib/wow/wow.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/lib/easing/easing.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/lib/waypoints/waypoints.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/lib/counterup/counterup.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/lib/owlcarousel/owl.carousel.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/lib/tempusdominus/js/moment.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/lib/tempusdominus/js/moment-timezone.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js}" type="text/javascript"></script>
+
+
+<!-- Template Javascript -->
+<script th:src="@{/assets/js/main.js}" type="text/javascript"></script>
+
+</body>
+
+</html>

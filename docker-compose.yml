@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  postgres-restoran:
+    container_name: postgres-restoran
+    image: postgres-restoran
+    ports:
+      - "5432:5432"
+    env_file: .env
+    restart: always
+    environment:
+      PG_SYSTEM_SHARED_BUFFERS: 512MB
+      PG_SYSTEM_MAX_CONNECTIONS: 500
+    command: [ "-c", "shared_buffers=512MB", "-c", "max_connections=500" ]
+    healthcheck:
+      test: psql postgres --command "select 1" -U restoran
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+    networks:
+      - restoran
+  restoran:
+    image: restoran
+    container_name: restoran
+    env_file: .env
+    restart: always
+    ports:
+      - "80:8080"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - restoran
+
+networks:
+  restoran:
+    external: true
+
+volumes:
+  postgres-volume:

@@ -10,6 +10,7 @@ sudo chmod a+r /etc/apt/keyrings/docker.gpg
 echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose
+sudo docker network create restoran
 ```
 
 2 - Git Repo klonlanır:
@@ -19,12 +20,13 @@ git clone git@github.com:omerfrkozcan/restoran-otomasyon.git
 
 3 - Docker build işlemi yapılır:
 ```
-docker build -t restoran-image .
+docker-compose build --no-cache restoran
 ```
 
-4 - Docker run işlemi yapılır:
+4 - Docker run işlemi yapılır (postgres-restoran tek seferlik çalıştırılır):
 ```
-docker run -d -p 80:8080 --name restoran restoran-image
+docker-compose up -d --no-deps --force-recreate postgres-restoran
+docker-compose up -d --no-deps --force-recreate restoran
 ```
 
 
