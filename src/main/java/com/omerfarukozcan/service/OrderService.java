@@ -69,7 +69,7 @@ public class OrderService {
 
         final String orderCode = getOrderCode();
         final String sessionId = requestUtil.getSessionId();
-        final List<CartModel> carts = cartRepository.findAllBySessionId(sessionId);
+        final List<CartModel> carts = cartRepository.findAllBySessionIdOrderByUpdatedAtDesc(sessionId);
 
         final List<CartModel> freshCarts = carts.stream().filter(c -> izNull(c.getOrderId())).collect(toList());
         if (izEmpty(freshCarts)) return new CheckoutResponse();

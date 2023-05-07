@@ -9,8 +9,8 @@ import java.util.List;
 @Repository
 public interface CartRepository extends JpaRepository<CartModel, Long> {
 
-    CartModel getFirstByUrunIdAndSessionId(Long urunId, String sessionId);
+    CartModel getFirstByUrunIdAndSessionIdOrderByUpdatedAtDesc(Long urunId, String sessionId);
 
-    List<CartModel> findAllBySessionId(String sessionId);
+    List<CartModel> findAllBySessionIdOrderByUpdatedAtDesc(String sessionId);
 
 }

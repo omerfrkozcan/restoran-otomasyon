@@ -37,7 +37,7 @@ public class CartService {
     public AddToChartResponse checkAndAdd(AddToChartRequest request) {
 
         final String sessionId = requestUtil.getSessionId();
-        CartModel oldCart = repository.getFirstByUrunIdAndSessionId(request.getUrunId(), request.getSessionId());
+        CartModel oldCart = repository.getFirstByUrunIdAndSessionIdOrderByUpdatedAtDesc(request.getUrunId(), request.getSessionId());
         if (izNotNull(oldCart) && izNotNull(oldCart.getOrderId())) oldCart = null;
 
         final CartModel cart = izNotNull(oldCart) ? oldCart : new CartModel();
@@ -65,7 +65,7 @@ public class CartService {
     }
 
     private List<CartModel> findAll(String sessionId) {
-        return repository.findAllBySessionId(sessionId);
+        return repository.findAllBySessionIdOrderByUpdatedAtDesc(sessionId);
     }
 
     public String prepareModelForCart(Model model) {
