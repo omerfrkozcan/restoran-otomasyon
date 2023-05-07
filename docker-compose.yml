@@ -3,7 +3,7 @@ version: "3"
 services:
   postgres-restoran:
     container_name: postgres-restoran
-    image: postgres-restoran
+    image: postgres
     ports:
       - "5432:5432"
     env_file: .env
