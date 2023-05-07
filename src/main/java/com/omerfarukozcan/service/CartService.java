@@ -48,7 +48,14 @@ public class CartService {
 
         repository.save(cart);
 
-        return new AddToChartResponse(true);
+        final List<CartModel> carts = findAllBySessionId();
+        final List<CartItem> items = cartItems(carts);
+        final int cartsSize = cartsSize(items);
+
+        final AddToChartResponse response = new AddToChartResponse(true);
+        response.setCartsSize(cartsSize);
+
+        return response;
     }
 
     public List<CartModel> findAllBySessionId() {
@@ -64,16 +71,17 @@ public class CartService {
     public String prepareModelForCart(Model model) {
         final List<CartModel> carts = findAllBySessionId();
         final List<CartItem> items = cartItems(carts);
+        final int cartsSize = cartsSize(items);
 
         model.addAttribute("carts", items);
         model.addAttribute("cartsTotalPrice", itemsTotalPrice(items));
-        model.addAttribute("cartsSize", cartsSize(items));
+        model.addAttribute("cartsSize", String.valueOf(cartsSize));
 
         return "cart";
     }
 
-    private String cartsSize(List<CartItem> carts) {
-        return String.valueOf(carts.stream().map(CartItem::getCount).reduce(0, Integer::sum));
+    private int cartsSize(List<CartItem> carts) {
+        return carts.stream().map(CartItem::getCount).reduce(0, Integer::sum);
     }
 
     private BigDecimal itemsTotalPrice(List<CartItem> items) {

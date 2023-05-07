@@ -8,6 +8,7 @@ import static java.lang.Boolean.FALSE;
 public class AddToChartResponse {
 
     private boolean success;
+    private int cartsSize;
 
     public AddToChartResponse() {
     }

@@ -216,7 +216,7 @@
             data: {"urunId": urunId, "sessionId": sessionId},
             success: function (data) {
                 if (data && data.success && data.success === true) {
-                    cartCounter++;
+                    cartCounter = data.cartsSize;
                     $('.cart-basket').text(cartCounter);
                     alert("Sepete Eklendi");
                 } else {
