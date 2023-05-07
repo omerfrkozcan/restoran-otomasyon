@@ -37,7 +37,9 @@ public class CartService {
     public AddToChartResponse checkAndAdd(AddToChartRequest request) {
 
         final String sessionId = requestUtil.getSessionId();
-        final CartModel oldCart = repository.getFirstByUrunIdAndSessionId(request.getUrunId(), request.getSessionId());
+        CartModel oldCart = repository.getFirstByUrunIdAndSessionId(request.getUrunId(), request.getSessionId());
+        if (izNotNull(oldCart.getOrderId())) oldCart = null;
+
         final CartModel cart = izNotNull(oldCart) ? oldCart : new CartModel();
 
         cart.setUrunId(request.getUrunId());

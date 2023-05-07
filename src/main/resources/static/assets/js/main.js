@@ -191,6 +191,8 @@
 
                     alert("Sipariş başarılı.");
 
+                    cartCounter = 0;
+
                     let origin = window.location.origin;
                     window.location.href = origin + "/orders?orderCode=" + data.orderCode;
                 } else {

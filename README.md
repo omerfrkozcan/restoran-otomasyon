@@ -18,12 +18,12 @@ sudo docker network create restoran
 git clone git@github.com:omerfrkozcan/restoran-otomasyon.git
 ```
 
-3 - Docker build işlemi yapılır:
+3 - Docker Compose build işlemi yapılır:
 ```
 docker-compose build --no-cache restoran
 ```
 
-4 - Docker run işlemi yapılır (postgres-restoran tek seferlik çalıştırılır):
+4 - Docker Compose run işlemi yapılır (postgres-restoran tek seferlik çalıştırılır):
 ```
 docker-compose up -d --no-deps --force-recreate postgres-restoran
 docker-compose up -d --no-deps --force-recreate restoran

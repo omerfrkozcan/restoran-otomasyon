@@ -102,9 +102,9 @@
                     <div class="col-md-3 text-sm-center text-md-start align-self-center my-2"><h1 class="h6" th:text="${order.note}"></h1></div>
                     <div class="col-md-3 text-sm-center text-md-start align-self-center my-2 optionbox">
                         <select th:id="${'active-order-' + order.getOrderId()}" th:name="${'active-order-' + order.getOrderId()}">
-                            <option th:value="'ACTIVE'" th:text="ACTIVE" th:selected="true"></option>
-                            <option th:value="'DELETED'" th:text="DELETED"></option>
-                            <option th:value="'COMPLETED'" th:text="COMPLETED"></option>
+                            <option value="ACTIVE" selected>Hazırlanıyor</option>
+                            <option value="DELETED">İptal Edildi</option>
+                            <option value="COMPLETED">Tamamlandı</option>
                         </select>
                     </div>
                 </div>
@@ -138,9 +138,9 @@
                     <div class="col-md-3 text-sm-center text-md-start align-self-center my-2"><h1 class="h6" th:text="${order.note}"></h1></div>
                     <div class="col-md-3 text-sm-center text-md-start align-self-center my-2 optionbox">
                         <select th:id="${'active-order-' + order.getOrderId()}" th:name="${'active-order-' + order.getOrderId()}">
-                            <option th:value="'ACTIVE'" th:text="ACTIVE"></option>
-                            <option th:value="'DELETED'" th:text="DELETED" th:selected="true"></option>
-                            <option th:value="'COMPLETED'" th:text="COMPLETED"></option>
+                            <option value="ACTIVE">Hazırlanıyor</option>
+                            <option value="DELETED" selected>İptal Edildi</option>
+                            <option value="COMPLETED">Tamamlandı</option>
                         </select>
                     </div>
                 </div>
@@ -174,9 +174,9 @@
                     <div class="col-md-3 text-sm-center text-md-start align-self-center my-2"><h1 class="h6" th:text="${order.note}"></h1></div>
                     <div class="col-md-3 text-sm-center text-md-start align-self-center my-2 optionbox">
                         <select th:id="${'active-order-' + order.getOrderId()}" th:name="${'active-order-' + order.getOrderId()}">
-                            <option th:value="'ACTIVE'" th:text="ACTIVE"></option>
-                            <option th:value="'DELETED'" th:text="DELETED"></option>
-                            <option th:value="'COMPLETED'" th:text="COMPLETED" th:selected="true"></option>
+                            <option value="ACTIVE">Hazırlanıyor</option>
+                            <option value="DELETED">İptal Edildi</option>
+                            <option value="COMPLETED" selected>Tamamlandı</option>
                         </select>
                     </div>
                 </div>

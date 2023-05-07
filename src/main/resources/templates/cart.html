@@ -106,15 +106,8 @@
 
                                             <div class="flex justify-center items-center">
 
-                                                <div class="pr-8 flex">
-                                                    <span class="font-semibold">-</span>
-                                                    <input type="text" class="focus:outline-none bg-gray-100 border h-6 w-8 rounded text-sm px-2 mx-2"
-                                                           th:value="${cart.count}">
-                                                    <span class="font-semibold">+</span>
-                                                </div>
-
                                                 <div class="pr-8">
-                                                    <span class="text-xs font-medium" th:text="${cart.totalPrice}"></span> ₺
+                                                    <span class="text-xs font-medium" th:text="${cart.count + ' x ' + cart.urunPrice}"></span> ₺
                                                 </div>
                                                 <div>
                                                     <i class="fa fa-close text-xs font-medium"></i>
