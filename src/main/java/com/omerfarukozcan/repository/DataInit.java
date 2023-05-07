@@ -41,9 +41,9 @@ public class DataInit {
             urun.setId(13L);
             urun.setImage("menu-1.jpg");
             urun.setPrice(new BigDecimal("170"));
-            urun.setName("Chicken Burger");
-            urun.setCategory("breakfest");
-            urun.setDescription("Ipsum ipsum clita erat amet dolor justo diam");
+            urun.setName("Serpme Kahvaltı 1");
+            urun.setCategory("Kahvaltı");
+            urun.setDescription("Peynir çeşitlerinden zeytin çeşitlerine tarlamızdan sofranıza.");
 
             urunRepository.save(urun);
         } catch (Exception e) {
