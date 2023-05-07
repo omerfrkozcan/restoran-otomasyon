@@ -48,7 +48,7 @@ public class CartService {
 
         repository.save(cart);
 
-        final List<CartModel> carts = findAllBySessionId();
+        final List<CartModel> carts = findAllBySessionId(sessionId);
         final List<CartItem> items = cartItems(carts);
         final int cartsSize = cartsSize(items);
 
@@ -61,10 +61,10 @@ public class CartService {
     public List<CartModel> findAllBySessionId() {
         final String sessionId = requestUtil.getSessionId();
 
-        return findAll(sessionId);
+        return findAllBySessionId(sessionId);
     }
 
-    private List<CartModel> findAll(String sessionId) {
+    private List<CartModel> findAllBySessionId(String sessionId) {
         return repository.findAllBySessionIdOrderByUpdatedAtDesc(sessionId);
     }
 

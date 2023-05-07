@@ -1,8 +1,6 @@
 (function ($) {
     "use strict";
 
-    let cartCounter = 0;
-
     // Spinner
     var spinner = function () {
         setTimeout(function () {
@@ -191,8 +189,6 @@
 
                     alert("Sipariş başarılı.");
 
-                    cartCounter = 0;
-
                     let origin = window.location.origin;
                     window.location.href = origin + "/orders?orderCode=" + data.orderCode;
                 } else {
@@ -216,8 +212,7 @@
             data: {"urunId": urunId, "sessionId": sessionId},
             success: function (data) {
                 if (data && data.success && data.success === true) {
-                    cartCounter = data.cartsSize;
-                    $('.cart-basket').text(cartCounter);
+                    $('.cart-basket').text(data.cartsSize);
                     alert("Sepete Eklendi");
                 } else {
                     alert("Beklenmedik Bir Hata Oluştu");
