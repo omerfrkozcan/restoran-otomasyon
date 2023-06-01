@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<OrderModel, Long> {
 
-    List<OrderModel> findAllByOrderCodeOrderByUpdatedAtDesc(String orderCode);
+    List<OrderModel> findAllByEmailOrderByUpdatedAtDesc(String email);
 
     List<OrderModel> findAllBySessionIdOrderByUpdatedAtDesc(String sessionId);
 

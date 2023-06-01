@@ -25,15 +25,12 @@ public class OrderController {
     }
 
     @GetMapping("/orders")
-    public String orders(@RequestParam(name = "orderCode", required = false) String orderCode, @ModelAttribute("orderItem") OrderItem orderItem, Model model) {
+    public String orders(@RequestParam(name = "email", required = false) String email, @ModelAttribute("orderItem") OrderItem orderItem, Model model) {
 
-        model.addAttribute("orderCodeParam", orderCode);
-        if (izBlank(orderCode)) {
-            if (izNotNull(orderItem) && izNotBlank(orderItem.getOrderCode())) orderCode = orderItem.getOrderCode();
-        }
+        model.addAttribute("email", email);
 
         cartService.prepareModelForCart(model);
-        model.addAttribute("orders", service.orders(orderCode));
+        model.addAttribute("orders", service.orders(email));
 
         return "orders";
     }

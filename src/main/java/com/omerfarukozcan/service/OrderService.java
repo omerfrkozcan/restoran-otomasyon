@@ -32,11 +32,8 @@ public class OrderService {
         this.requestUtil = requestUtil;
     }
 
-    public List<OrderItem> orders(String orderCode) {
-
-        if (izBlank(orderCode)) return toItems(repository.findAllBySessionIdOrderByUpdatedAtDesc(requestUtil.getSessionId()));
-
-        return toItems(repository.findAllByOrderCodeOrderByUpdatedAtDesc(orderCode));
+    public List<OrderItem> orders(String email) {
+        return toItems(repository.findAllByEmailOrderByUpdatedAtDesc(email));
     }
 
     private List<OrderItem> toItems(List<OrderModel> orders) {
