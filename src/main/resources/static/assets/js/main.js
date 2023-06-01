@@ -190,7 +190,7 @@
                     alert("Sipariş başarılı.");
 
                     let origin = window.location.origin;
-                    window.location.href = origin + "/orders?orderCode=" + data.orderCode;
+                    window.location.href = origin + "/orders?email=" + email;
                 } else {
                     alert("Beklenmedik Bir Hata Oluştu");
                 }
